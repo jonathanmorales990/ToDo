@@ -1,89 +1,266 @@
 
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?zdl250');
+  src:  url('fonts/icomoon.eot?zdl250#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.woff2?zdl250') format('woff2'),
+    url('fonts/icomoon.ttf?zdl250') format('truetype'),
+    url('fonts/icomoon.woff?zdl250') format('woff'),
+    url('fonts/icomoon.svg?zdl250#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-drag:before {
+  content: "\e900";
+}
+.icon-Add:before {
+  font-size: 25px;
+  content: "\e901";
+}
+.icon-trash:before {
+  content: "\e902";
+}
+
+
+
 $perfil-card-color:#F5F5FA;
 $color-button:#7540EE;
 $white:#FFFFFF;
 $fonte:'Source Sans Pro', sans-serif;
 
+body{  font-family: $fonte; }
+
+.perfil-dados-titulo{
+  color: #88889C;
+  font-size: 12px;
+  margin: 0px;
+}
 .container-principal {
 
-  width: 100%;
-
+  width: 1024px;
+  margin: 0 auto;
 }
 
 .container-perfil{
+ margin-top: 90px;
 
-  margin: 80px 150px 0px 150px;
   display: flex;
 
 }
 
 .container-perfil-left{
 
-  flex: 1;
-  background-color:red;
-  width:50%;
+  
+  width:75%;
   display:inline-block;
 
 }
 .container-perfil-right{
   position:relative;
-  flex: 1;
-  background-color:blue;
-  width:50%;
+ 
+  width:25%;
   display:inline-block;
   
 }
 
-.perfil-card-background{
-  padding:15px;
+.perfil-card-background {
+  float: left;
+  padding: 15px;
+  margin-top: 10px;
+  display: inline-block;   
   border-radius: 10px;
-  position:relative;
-  width:177px;
-  height:238px;
-  background-color:$perfil-card-color;
+  position: relative;
+  width: 180px;
+  height: 230px; 
+  background-color: $perfil-card-color;
+  
+  .perfil-image {
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-position: 50%;
+  }
 
 }
-
-.perfil-card{
-  
+/* 
+.HideOnScale{overflow: hidden; border-radius: 10px; height: 100%;}
+ */
+/* .perfil-card{
+  object-fit: cover;
+  display: inline-block;
   border-radius: 10px;
   position:relative;
   width:100%;
   height:100%;
-  background-color:yellow;
 
+} */
+
+.container-perfil-status{
+  margin-left:44px;
+  float:left;
+  display: inline-block;
+  position:relative;
+  width:25px;
+  height:100%;
+
+}
+.circle-status-perfil{
+    margin-top: 72px;
+    height: 23px;
+    width: 23px;
+    border: 3px solid #D4F8E3;
+    position: absolute;
+    z-index: 99999;
+    border-radius: 50%;
+    background-color: #e8f9d7d9;
+    
+}
+
+.circle-status-perfil::before{
+  content: '';
+  display: block;
+  width: 9px;
+  height: 9px;
+  
+  background-color: #caeda4;
+  border-radius: 50%;
+  position: relative;
+  margin: auto; 
+  border: 3px solid #2dc76d;
+  top: 49%;
+  -ms-transform:  translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.perfil-dados-status-container > div{
+
+  display: inline-block;
+ }
+
+.perfil-dados-numero{
+
+  display: block;
+  padding: 0px!important;
+  margin-top: 11px;
+  margin-bottom: 0px;
+  margin-right:64px;
+  color: #7540EE;
+  font-size: 20px;
+ }
+
+.perfil-dados-status{
+  display: block;
+  margin-right: 22px;
+  margin-top:0px;
+  font-size: 12px;
+  color: #88889C;
+}
+
+.perfil-dados-status-container{
+  border-top: 2px solid #ECECEE; 
+  margin-top:43px;
+  padding-top: 12px;
+  float:left;
+  position: relative;
+  width: 100%;
+  height: 100px;
+}
+
+.container-perfil-dados{
+  margin-top: 70px;
+  margin-left: 23px;
+  float:left;
+  display: inline-block;
+  position:relative;
+  width:257px;
+  height:100%;
+}
+.perfil-dados{
+  margin-top:5px;
+  float:left;
+  position: relative;
+  width: 100%;
+  height: 50px;
+}
+.perfil-dados > .perfil-nome {
+  margin-top: 0px;
+  
+}
+.perfil-nome{
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #656589;
+}
+.perfil-cargo{
+  font-size: 12px;
+  color:#88889C;
 }
 
 .cria-taks-button{
   cursor:pointer;
   color:$white;
+  text-align:  center;
   font-size:16px;
-  border-radius:5px;
+  border-radius:10px;
   font-family: $fonte;
-  font-weight: 600;
-  padding:15px 55px 15px 55px;
+  width: 250px;
+  height: 60px;
   background-color:$color-button;
   border:none;
   outline:0;
   position: absolute;
   bottom:0;
   right:0;
-  box-shadow: 1px 1px #6b2aff;
+  box-shadow: 0px 25px 68px #7540ee36;
   transition-timing-function: ease-out;
   transition: background-color 1.1s;
 }
 
+.cria-taks-button::before {
+  font-size: 25px;
+  margin-right:15px;
+  font-weight: 0;
+  font-family: 'icomoon';
+  content: "\e901";
+}
+
+.textButton{
+ 
+  position: relative;
+  top: -4px;
+  margin: 0px;
+  font-weight: 600;
+}
+
 .button-icon{
-  padding-right:15px;
+  
   font-size:25px!important;
-  position:relative;
-  top:3px;
+  
 }
 
 .cria-taks-button:hover{
  transition-timing-function: ease-int;
  transition: background-color 1.1s;
- background-color:#580fff;
+ background-color:#9467fb;
 }
