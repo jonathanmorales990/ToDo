@@ -1,0 +1,89 @@
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+$perfil-card-color:#F5F5FA;
+$color-button:#7540EE;
+$white:#FFFFFF;
+$fonte:'Source Sans Pro', sans-serif;
+
+.container-principal {
+
+  width: 100%;
+
+}
+
+.container-perfil{
+
+  margin: 80px 150px 0px 150px;
+  display: flex;
+
+}
+
+.container-perfil-left{
+
+  flex: 1;
+  background-color:red;
+  width:50%;
+  display:inline-block;
+
+}
+.container-perfil-right{
+  position:relative;
+  flex: 1;
+  background-color:blue;
+  width:50%;
+  display:inline-block;
+  
+}
+
+.perfil-card-background{
+  padding:15px;
+  border-radius: 10px;
+  position:relative;
+  width:177px;
+  height:238px;
+  background-color:$perfil-card-color;
+
+}
+
+.perfil-card{
+  
+  border-radius: 10px;
+  position:relative;
+  width:100%;
+  height:100%;
+  background-color:yellow;
+
+}
+
+.cria-taks-button{
+  cursor:pointer;
+  color:$white;
+  font-size:16px;
+  border-radius:5px;
+  font-family: $fonte;
+  font-weight: 600;
+  padding:15px 55px 15px 55px;
+  background-color:$color-button;
+  border:none;
+  outline:0;
+  position: absolute;
+  bottom:0;
+  right:0;
+  box-shadow: 1px 1px #6b2aff;
+  transition-timing-function: ease-out;
+  transition: background-color 1.1s;
+}
+
+.button-icon{
+  padding-right:15px;
+  font-size:25px!important;
+  position:relative;
+  top:3px;
+}
+
+.cria-taks-button:hover{
+ transition-timing-function: ease-int;
+ transition: background-color 1.1s;
+ background-color:#580fff;
+}
