@@ -38,7 +38,7 @@
   content: "\e901";
 }
 .icon-trash:before {
- 
+  cursor:pointer;
   color:#7540ee40;
   font-size:20px;
   content: "\e902";
@@ -52,7 +52,7 @@ $color-button:#7540EE;
 $white:#FFFFFF;
 $fonte:'Source Sans Pro', sans-serif;
 
-body{  font-family: $fonte; }
+body{  font-family: $fonte; text-align: left!important; background-color: white!important;}
 
 .perfil-dados-titulo{
   color: #88889C;
@@ -135,7 +135,6 @@ body{  font-family: $fonte; }
     width: 23px;
     border: 3px solid #D4F8E3;
     position: absolute;
-    z-index: 99999;
     border-radius: 50%;
     background-color: #e8f9d7d9;
     
@@ -352,9 +351,8 @@ body{  font-family: $fonte; }
 
 .todo-lists{
   margin:0px;
-  margin-top:34px;
-  margin-bottom:90px;
   padding:0px;
+  margin-bottom: 15px;
 }
 
 .todo-lists-icon{
@@ -370,7 +368,7 @@ body{  font-family: $fonte; }
   color:#656589;
   font-size:16.5px;
   border-bottom: 1px solid #ECECEE;
-  padding-bottom:35px; 
+  padding-bottom:34px; 
 }
 .todo-lists-responsavel{
   width:240px;
@@ -389,6 +387,16 @@ body{  font-family: $fonte; }
   padding-bottom:35px; 
 }
 
+.circle-pendente-mini{
+  width:12px;
+  height:12px;
+  background-color:#FF7052;
+  display:inline-block;
+  border-radius:50%;
+  margin-right:12px;
+ 
+}
+
 .circle-emproducao-mini{
   width:12px;
   height:12px;
@@ -398,6 +406,17 @@ body{  font-family: $fonte; }
   margin-right:12px;
  
 }
+
+.circle-resolvido-mini{
+  width:12px;
+  height:12px;
+  background-color:#2DC76D;
+  display:inline-block;
+  border-radius:50%;
+  margin-right:12px;
+ 
+}
+
 
 .perfil-foto-mini{
   position:relative;
@@ -415,4 +434,21 @@ body{  font-family: $fonte; }
   right:-50px;
   top:2px;
   float:right;
+
+}
+
+.todo-lists-containers{
+  margin-bottom: calc(90px - 15px);
+  margin-top:15px;
+}
+
+.modal-task{
+    background-color: white!important;
+    width: 100%;
+    height: 50px;
+}
+
+.confirma{
+  background-color: green!important;
+  margin-left: 3px;
 }

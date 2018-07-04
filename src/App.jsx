@@ -1,129 +1,199 @@
 import React, { Component } from 'react';
-import perfil from './img/01.jpg';
+import Perfil from './components/perfil.jsx';
+import List from './components/list.jsx';
+import './css/form.scss';
 import './css/App.scss';
+import './css/modal.css';
+import './css/animate.css';
+
 
 class App extends Component {
 
 	constructor(props) {
+		
 		super(props);
+
+		this.state = {
+			descricao:'',
+			status:'pendentes',
+			responsaveisId:1,
+			todos:[],
+			responsaveis: [
+			    {
+
+			    	id:1,
+			    	nome:'Usuário 1',
+			    	url:'./img/02.jpg'
+
+			    },
+			    {
+
+			    	id:2,
+			    	nome:'Usuário 2',
+			    	url:'./img/02.jpg'
+
+			    },{
+
+			    	id:3,
+			    	nome:'Usuário 3',
+			    	url:'./img/03.jpg'
+
+			    },{
+
+			    	id:4,
+			    	nome:'Usuário 4',
+			    	url:'./img/04.jpg'
+			    
+			    },{
+
+			    	id:5,
+			    	nome:'Usuário 5',	
+			    	url:'./img/05.jpg'
+			    
+			    },{
+
+			    	id:6,
+			    	nome:'Usuário 6',	
+			    	url:'./img/06.jpg'
+			    
+			    }
+			]
+
+		}
+		
+
 	}
 
-	onClick = (index) => {
-		console.log(index)
-		console.log(`vc clicou no index: ${index}`);
+	onChangeDescricao = (event) => {
+		this.setState({descricao: event.target.value});
+	}
+	onChangeStatus = (event) => {
+
+		this.setState({status: event.target.value});
+
+	}
+	onChangeResponsaveis = (event) => {
+		this.setState({responsaveisId: event.target.value});
+
+	}
+	salva = (event) => {
+	
+		let todo = {};
+
+		todo.descricao = this.state.descricao;
+		todo.status = this.state.status;
+		todo.responsavel = this.state.responsaveis.find(responsaveis => responsaveis.id === parseInt(this.state.responsaveisId, 10));
+		
+		this.setState({ todos: [...this.state.todos, todo] });
+	}
+	editarOpenModal = (todos) =>{
+
+		this.setState({ descricao:todos.descricao, status:todos.status, responsaveisId:todos.responsavel.id });
+		
+	}	
+
+	excluir = (index) => {
+		
+		this.setState({
+      		todos: this.state.todos.filter((_, i) => i !== index)
+    	});
+	}
+
+	editar = () => {
+		
+		let todo = {};
+
+		todo.descricao = this.state.descricao;
+		todo.status = this.state.status;
+		todo.responsavel = this.state.responsaveis.find(responsaveis => responsaveis.id === parseInt(this.state.responsaveisId, 10));
+
 	}
 
 	render() {
 		return (
-			<div className="container-principal">
+				<div className="container-principal">
 
-				<div className="container-perfil">
+					{/*MODAL Nova Task INICIO*/}
+					<div className="light-modal" id="open-modal-novo" role="dialog" aria-labelledby="light-modal-label" aria-hidden="false">
+				        
+				        <div className="light-modal-content animated zoomInRight ">
+				            <div className="light-modal-header ">
+				                <h3 className="light-modal-heading">Nova Task</h3>
+				                <a href="#" className="light-modal-close-icon" aria-label="close">&times;</a>
+				            </div>
+				            
+				            <div className="light-modal-body">
+				           	
+								<div className="form-container">		
+									<textarea value={this.state.descricao} onChange={this.onChangeDescricao} className="form-descricao" type="text" placeholder="Descrição"/>
 
-  				<div className="container-perfil-left">
+									<select className="form-select" onChange={this.onChangeStatus} value={this.state.status}>
+										<option value="pendentes">Pendente</option>
+										<option value="emproducao">Em produção</option>
+										<option value="resolvido">Resolvido</option>
+									</select>
+									<select className="form-select" onChange={this.onChangeResponsaveis} value={this.state.responsaveisId} >
+										<option value="1">Usuário 1</option>
+										<option value="2">Usuário 2</option>
+										<option value="3">Usuário 3</option>
+										<option value="4">Usuário 4</option>
+										<option value="5">Usuário 5</option>
+										<option value="6">Usuário 6</option>
+									</select>
 
-  					{/*
-  					<ul>
-  						{[1,2,3,4,5,6,7,8,9].map((item, index) => (
-  							<li key={index} onClick={this.onClick.bind(this, index)}>{item}</li>
-  						))}
-  					</ul>
-  					*/}
+									<button className="cria-taks-button-form" onClick={this.salva}> <span className="textButton">Adicionar Task</span> </button>
 
-  					<div className="perfil-card-background" onClick={this.onClick}>
-  						<div className="perfil-image" style={{backgroundImage: `url(${perfil})`}} />
-  					</div>
+								</div>
+										
+				            </div>
+				        </div>
 
-  					<div className="container-perfil-status">
-  						<span className="circle-status-perfil" />
-  					</div>
+				    </div>
+					{/*MODAL FIM*/}
 
-  					<div className="container-perfil-dados">
+					{/*MODAL edit Task INICIO*/}
+					<div className="light-modal" id="open-modal-edit" role="dialog" aria-labelledby="light-modal-label" aria-hidden="false">
+				        
+				        <div className="light-modal-content animated zoomInRight ">
+				            <div className="light-modal-header ">
+				                <h3 className="light-modal-heading">Edit Task</h3>
+				                <a href="#" className="light-modal-close-icon" aria-label="close">&times;</a>
+				            </div>
+				            
+				            <div className="light-modal-body">
+				           	
+								<div className="form-container">		
+									<textarea value={this.state.descricao} onChange={this.onChangeDescricao} className="form-descricao" type="text" placeholder="Descrição"/>
 
-  						<div className= "perfil-dados">
-  							<p className= "perfil-nome">Lisa Helma Davoz</p>
-  							<p className= "perfil-cargo">Senior Dev</p>
-  						</div>
+									<select className="form-select" onChange={this.onChangeStatus} value={this.state.status}>
+										<option value="pendentes">Pendente</option>
+										<option value="emproducao">Em produção</option>
+										<option value="resolvido">Resolvido</option>
+									</select>
+									<select className="form-select" onChange={this.onChangeResponsaveis} value={this.state.responsaveisId} >
+										<option value="1">Usuário 1</option>
+										<option value="2">Usuário 2</option>
+										<option value="3">Usuário 3</option>
+										<option value="4">Usuário 4</option>
+										<option value="5">Usuário 5</option>
+										<option value="6">Usuário 6</option>
+									</select>
 
-  						<div className= "perfil-dados-status-container">
-  							<p className= "perfil-dados-titulo">Você possui:</p>
+									<button className="cria-taks-button-form" onClick={this.editar}> <span className="textButton">Editar Task</span> </button>
 
-  							<div>
-  								<p className= "perfil-dados-numero">02</p>
-  								<p className= "perfil-dados-status">pendentes</p>
-  							</div>
+								</div>
+										
+				            </div>
+				        </div>
 
-  							<div>
-  								<p className= "perfil-dados-numero">01</p>
-  								<p className= "perfil-dados-status">em produção</p>
-  							</div> 
+				    </div>
+					{/*MODAL edit task FIM*/}
 
-  							<div>
-  								<p className= "perfil-dados-numero">01</p>
-  								<p className= "perfil-dados-status">resolvidas</p>
-  							</div> 
-
-  						</div>
-
-  					</div>
-
-  				</div>
-
-  				<div className="container-perfil-right">
-
-  					<button className="cria-taks-button"> <span className="textButton">Adicionar Task</span> </button>
-
-  				</div>
+				    <Perfil/>
+				    <List todos={this.state.todos} excluirClick={this.excluir} editarOpenModalClick={this.editarOpenModal}/>
+			 
 
 				</div>
-
-        <div className ="container-todo-principal">
-  				<div className="container-todo">
-
-            <div>
-    					<span className="circle-pendentes"></span>
-    					<p className = "titulo-todo">Pendente</p>
-            </div>  
-
-  				</div>
-
-  				<div className="container-todo">
-            <div>
-    					<span className="circle-emproducao"></span>
-    					<p className = "titulo-todo">Em produção</p>
-            </div>
-            <div>    
-              <ul className="todo-lists-top-titulos">
-                <li className="todo-lists-top-empty"></li>
-                <li className="todo-lists-top-descricao">Descrição</li>
-                <li className="todo-lists-top-resposavel">Responsável</li>
-                <li className="todo-lists-top-status">Status</li>
-
-              </ul>
-
-            </div>
-            <div>
-              <ul className="todo-lists">
-                <li className="todo-lists-icon"><i className="icon-drag"></i></li>
-                <li className="todo-lists-descricao">Aerero Supofi Sfsafa</li>
-                <li className="todo-lists-responsavel"> 
-                  <span className="perfil-foto-mini"></span> 
-                  Lisa Helma Davoz
-                </li>
-                <li className="todo-lists-status"><span className="circle-emproducao-mini"></span>Em produção</li>
-                <li className="todo-lists-trash"><div><i className="icon-trash floatdir"/></div></li>
-              </ul>
-            </div>
-  				</div>
-
-  				<div className="container-todo">
-            <div>
-    					<span className="circle-resolvido"></span>
-    					<p className= "titulo-todo">Resolvido</p>
-            </div>
-  				</div>
-        </div>
-
-			</div>
 			);
 	}
 }
