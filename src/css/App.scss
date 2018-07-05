@@ -39,7 +39,7 @@
 }
 .icon-trash:before {
   cursor:pointer;
-  color:#7540ee40;
+ 
   font-size:20px;
   content: "\e902";
 }
@@ -451,4 +451,21 @@ body{  font-family: $fonte; text-align: left!important; background-color: white!
 .confirma{
   background-color: green!important;
   margin-left: 3px;
+}
+
+.light-modal-content{
+  min-width: 400px;
+}
+.floatdir{
+  color:#7540ee40;
+}
+.icon-trash:hover{color:#7540EE!important;}
+.todo-lists:hover {
+
+  .todo-lists-descricao{color:#7540EE;}
+  .todo-lists-responsavel{color:#7540EE;}
+  .todo-lists-status{color:#7540EE;}
+  .todo-lists-trash{color:#7540EE;}
+  .floatdir{color:#7540EE!important;}
+  .todo-lists-icon{color: #88889C;}
 }

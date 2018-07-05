@@ -37,21 +37,21 @@ class List extends Component {
 				            <div className="todo-lists-containers">
 				            	{
 				            		
-				            		this.props.todos.length ? ( this.props.todos.filter(todos => todos.status === 'pendentes').map((todos, i) => {
-                    
-	                  					return (  	
-							            	<ul className="todo-lists" key={i}>
-							                	<li className="todo-lists-icon"><i className="icon-drag"></i></li>
-							                	<a href="#open-modal-edit"  onClick={this.props.editarOpenModalClick.bind(this,todos)}><li className="todo-lists-descricao">{todos.descricao}</li></a>
-							               		<li className="todo-lists-responsavel"> 
-							                  		<span className="perfil-foto-mini"></span> 
-							                  		{todos.responsavel.nome}
-							                	</li>
-							                	<li className="todo-lists-status"><span className="circle-pendente-mini"></span>Pendente</li>
-							                	<li className="todo-lists-trash"><div onClick={this.props.excluirClick.bind(this,i)}><i className="icon-trash floatdir"/></div></li>
-							            	</ul>
-					            		)
-                    				})) : (null)
+				            		this.props.todos.length ? ( this.props.todos.map((todos, i) => {
+                    					
+		                  					return  todos.status === 'pendentes' ? (  	
+								            	<ul className="todo-lists" key={i}>
+								                	<li className="todo-lists-icon"><i className="icon-drag"></i></li>
+								                	<a href="#open-modal-edit"  onClick={this.props.editarOpenModalClick.bind(this,todos, i)}><li className="todo-lists-descricao">{todos.descricao}</li></a>
+								               		<li className="todo-lists-responsavel"> 
+								                  		<img src={todos.responsavel.url} className="perfil-foto-mini"/> 
+								                  		{todos.responsavel.nome === 'Lisa Helma Davoz' ? (<strong> {todos.responsavel.nome} </strong>) : (todos.responsavel.nome) }
+								                	</li>
+								                	<li className="todo-lists-status"><span className="circle-pendente-mini"></span>Pendente</li>
+								                	<li className="todo-lists-trash"><div onClick={this.props.excluirClick.bind(this,i)}><i className="icon-trash floatdir"/></div></li>
+								            	</ul>
+								            	) : null		
+                    				})) : null
 				            	}
 				            </div>
 			  			</div>
@@ -81,21 +81,21 @@ class List extends Component {
 				            <div className="todo-lists-containers">
 				            	{
 				            		
-				            		this.props.todos.length ? ( this.props.todos.filter(todos => todos.status === 'emproducao').map((todos, i) => {
+				            		this.props.todos.length ? ( this.props.todos.map((todos, i) => {
                     
-	                  					return (  	
+	                  					return  todos.status === 'emproducao' ? (  		
 							            	<ul className="todo-lists" key={i}>
 							                	<li className="todo-lists-icon"><i className="icon-drag"></i></li>
-							                	<a href="#open-modal-edit"  onClick={this.props.editarOpenModalClick.bind(this,todos)}><li className="todo-lists-descricao">{todos.descricao}</li></a>
+							                	<a href="#open-modal-edit"  onClick={this.props.editarOpenModalClick.bind(this,todos,i)}><li className="todo-lists-descricao">{todos.descricao}</li></a>
 							               		<li className="todo-lists-responsavel"> 
-							                  		<span className="perfil-foto-mini"></span> 
-							                  		{todos.responsavel.nome}
+							                  		<img src={todos.responsavel.url} className="perfil-foto-mini"/> 
+							                  		{todos.responsavel.nome === 'Lisa Helma Davoz' ? (<strong> {todos.responsavel.nome} </strong>) : (todos.responsavel.nome) }
 							                	</li>
 							                	<li className="todo-lists-status"><span className="circle-emproducao-mini"></span>Em produção</li>
-							                	<li className="todo-lists-trash"><div onClick={this.props.excluirClick.bind(this,i)}><i className="icon-trash floatdir"/></div></li>
+							                	<li className="todo-lists-trash" onClick={this.props.excluirClick.bind(this,i)}><i className="icon-trash floatdir"/></li>
 							            	</ul>
-					            		)
-                    				})) : (null)
+					            		) : null
+                    				})) : null
 				            	}
 				            </div>
 
@@ -122,21 +122,22 @@ class List extends Component {
 				            <div className="todo-lists-containers">
 				            	{
 				            		
-				            		this.props.todos.length ? ( this.props.todos.filter(todos => todos.status === 'resolvido').map((todos, i) => {
-                    
-	                  					return (  	
+				            		this.props.todos.length ? ( this.props.todos.map((todos, i) => {
+                    					
+	                  					return  todos.status === 'resolvido' ? (  	
 							            	<ul className="todo-lists" key={i}>
 							                	<li className="todo-lists-icon"><i className="icon-drag"></i></li>
-							                	<a href="#open-modal-edit" onClick={this.props.editarOpenModalClick.bind(this,todos)}><li className="todo-lists-descricao">{todos.descricao}</li></a>
+							                	<a href="#open-modal-edit" onClick={this.props.editarOpenModalClick.bind(this,todos,i)}><li className="todo-lists-descricao">{todos.descricao}</li></a>
 							               		<li className="todo-lists-responsavel"> 
-							                  		<span className="perfil-foto-mini"></span> 
-							                  		{todos.responsavel.nome}
+							                  		<img src={todos.responsavel.url} className="perfil-foto-mini"/>
+							                  		{todos.responsavel.nome === 'Lisa Helma Davoz' ? (<strong> {todos.responsavel.nome} </strong>) : (todos.responsavel.nome) }
 							                	</li>
 							                	<li className="todo-lists-status"><span className="circle-resolvido-mini"></span>Resolvido</li>
 							                	<li className="todo-lists-trash"><div onClick={this.props.excluirClick.bind(this,i)}><i className="icon-trash floatdir"/></div></li>
 							            	</ul>
-					            		)
-                    				})) : (null)
+					            		) : null
+
+                    				})) : null
 				            	}
 				            </div>
 			  			</div>
